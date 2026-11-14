@@ -103,6 +103,15 @@ The main agent remains an active builder. It owns scoping, a substantive main tr
 - Validate config before reload or restart; prefer reload when safe.
 - Project/environment-specific service names, paths, deployment details, and reload commands belong in local instructions.
 
+## External Systems and Production Safety
+
+- Treat production systems, customer data, private files, and external services as read-only by default.
+- Before writing to an external system, deploying, publishing, sending a message, or deleting remote data, confirm the exact target, action, scope, consequence, and verification or rollback path. Proceed only when the user has authorized that specific action.
+- Do not upload private files, raw logs, credentials, tokens, or personal data to external services. Remove secrets and unrelated private data before using an external tool.
+- If a possible secret or sensitive record is encountered, stop before exposing, copying, or persisting it; report only its non-sensitive location and the blocking condition.
+- For infrastructure changes, inspect the current service state and validate configuration before reload or restart. Prefer a reversible reload when it is safe.
+- After an authorized external write, verify the actual resulting state and report any unverified portion.
+
 ## Git & PRs
 
 - Commit only when explicitly requested.
@@ -115,6 +124,8 @@ The main agent remains an active builder. It owns scoping, a substantive main tr
 
 Before declaring completion:
 
+- For analysis-only tasks, answer the requested questions with evidence and explicit limitations. Provide an interim conclusion after the first decisive evidence pass; continue to close a named gap or cover requested scope.
+
 - Run the relevant validation, or state why it could not run.
 - Check that the change solves the stated problem and preserves required behavior.
 - Check for known unintended side effects and secret exposure.
@@ -123,7 +134,19 @@ Before declaring completion:
 
 ## Response Format
 
-Be concise, specific, and direct by default. Avoid flattery, filler, restated requirements, and agreement with incorrect premises.
+Be concise, specific, direct, and easy to understand by default. Avoid flattery, filler, restated requirements, and agreement with incorrect premises.
+
+- Use plain Chinese when the user writes Chinese.
+- Start with the direct conclusion or current status.
+- Explain technical terms the first time they appear.
+- Explain the overall situation before implementation details.
+- Separate confirmed facts, inferences, assumptions, and unresolved questions.
+- Use numbered steps or a small table when they improve clarity.
+- Keep each paragraph focused on one idea.
+- When reporting work, state what changed or was found, why, how it was verified, and what remains uncertain.
+- Keep necessary evidence and limitations; do not hide them just to make the reply shorter.
+- If the user says the explanation is hard to follow, rewrite it in simpler Chinese immediately.
+- Avoid unexplained jargon, vague praise, generic process narration, and unnecessary English.
 
 Answer direct questions directly when possible. Example: `npm test`, not `The command to run tests is npm test.`
 
