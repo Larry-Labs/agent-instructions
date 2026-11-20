@@ -137,6 +137,7 @@ Before declaring completion:
 Be concise, specific, direct, and easy to understand by default. Avoid flattery, filler, restated requirements, and agreement with incorrect premises.
 
 - Use plain Chinese when the user writes Chinese.
+- Talk to me ELI5 by default, and go deeper if I ask.
 - Start with the direct conclusion or current status.
 - Explain technical terms the first time they appear.
 - Explain the overall situation before implementation details.
